@@ -8,3 +8,26 @@
 	//Отнимем от этого момента текущий и преобразуем в дни:
 	echo floor(($time - time()) / (60 * 60 * 24));
 ?>
+
+=----------------------------------------------------------------------------------------------------=
+=----------------------------------------------------------------------------------------------------=
+
+
+<form action="" method="GET">
+	<input type="text" name="year">
+	<input type="submit">
+</form>
+
+<?php
+	if (isset($_REQUEST['year'])) {
+		$year = $_REQUEST['year'];
+		$arr = [];
+		for($i = 1; $i <= 12; $i++) {
+			$timestamp = mktime(0, 0, 0, $i, 13, $year);
+			if (date('w', $timestamp) == 5) {
+				$arr[] = date('d-m-Y', $timestamp);
+			}
+		}
+		var_dump($arr);
+	}
+?>
